@@ -32,6 +32,12 @@ class Printer:
             center = (self.image.size[0] - text_width) / 2, (self.image.size[1] - text_height) / 2
             draw.text((center[0], img.height - text_height - self.frame), contact, fill=self.color, font=self.contact_font)
 
+        if os.path.exists(name + ".png"):
+            i = 0
+            while os.path.exists(name + ".png"):
+                i += 1
+                name = name + "({})".format(i)
+
         print("saved {}.png".format(name))
         img.save(name + ".png")
         os.chdir('..')
